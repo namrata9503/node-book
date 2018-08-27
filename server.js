@@ -87,9 +87,27 @@ app.post('/api/books/',(request,response)=>{
 
 
 
+app.put('/api/books/:id',(request, response)=>{
+    var  b;
+    books.forEach(book => {
+        if(book.id==request.params.id)
+        {
+            b = book
+        }
+    });
+    response.json(b)
+})
 
+app.delete('/api/books/:id',(request,response)=>{
+    var b;
+    books.forEach((book, index)=>{
+        if(book.id == request.params.id){
+            books.splice(index,2);
+        }
+    });
+    response.json(books);
 
-
+})
 
 
 app.listen(3000, () => console.log('Express server at 3000'))
