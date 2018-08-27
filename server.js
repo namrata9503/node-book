@@ -57,6 +57,33 @@ var books=[
     }
 ];
 
+app.get('/api/books',(request,response)=>{
+    response.json(books);
+})
+
+app.get('/api/books/:id',(request, response)=>{
+    var  b;
+    books.forEach(book => {
+        if(book.id==request.params.id)
+        {
+            b = book
+        }
+    });
+    response.json(b)
+})
+
+
+
+app.post('/api/books/',(request,response)=>{
+    console.log(request.body);
+    books.push({
+          
+            id : request.body.id,
+            name: request.body.name
+
+        })
+    response.json(books);
+})
 
 
 
